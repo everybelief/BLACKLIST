@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# 运行时会话与凭证，禁止入库
+waf_ip_check_session.json
+packet.txt
+blacklist_error.log
+*-black.txt
+ip.txt
+*.exe
+
+# 编辑器
+.idea/
+.vscode/
+*.swp
