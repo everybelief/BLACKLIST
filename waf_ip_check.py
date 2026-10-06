@@ -11,6 +11,7 @@
 """
 from __future__ import print_function
 
+import base64
 import json
 import os
 import random
@@ -58,6 +59,28 @@ def asset_path(*names):
         if os.path.isfile(p):
             return p
     return os.path.join(bases[-1], *names)
+
+
+def ensure_assets():
+    try:
+        from linshen_assets import ICO, PNG32
+    except ImportError:
+        return
+    folder = os.path.join(SCRIPT_DIR, "assets")
+    try:
+        os.makedirs(folder, exist_ok=True)
+    except Exception:
+        return
+    mapping = (("linshen.ico", ICO), ("linshen32.png", PNG32))
+    for name, blob in mapping:
+        path = os.path.join(folder, name)
+        if os.path.isfile(path) and os.path.getsize(path) > 100:
+            continue
+        try:
+            with open(path, "wb") as f:
+                f.write(base64.b64decode(blob))
+        except Exception:
+            pass
 
 
 def _log_crash(text):
@@ -705,6 +728,7 @@ class App(tk.Tk):
         self._slogan_id = None
         self._slogan_x = 0
         sess = load_session()
+        ensure_assets()
         self._set_icon()
         self._build(sess)
         self._tick_comment()
