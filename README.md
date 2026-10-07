@@ -1,5 +1,7 @@
 # BLACKLIST
 
+[Releases 下载 Windows exe](https://github.com/everybelief/BLACKLIST/releases/latest)
+
 值守封 IP 用的。腾讯云 WAF 点一遍、云防火墙再点一遍，华为那边还得翻对象组看封没封、挂在哪个供应商名下。这个窗口一次做完。
 
 Cookie 从控制台 F12 拷进来。探测只查询，不会封。点「下发封禁」才写腾讯云。华为目前只查不写。
